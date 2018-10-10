@@ -21,6 +21,7 @@ class BacklogBoardController extends BaseController {
 
         $this->projectUsesBacklogBoardModel->setBacklogBoard($project['id']);
         $this->backlogSwimlane($project['id']);
+        $this->backlogColumn($project['id']);
 
         $this->flash->success(t('Backlog Board now activated.'));
 
@@ -32,6 +33,7 @@ class BacklogBoardController extends BaseController {
 
         $this->projectUsesBacklogBoardModel->unsetBacklogBoard($project['id']);
         $this->removeBacklogSwimlane($project['id'], 0);
+        $this->removeBacklogColumn($project['id'], 1);
 
         $this->flash->success(t('Backlog Board now deactivated.'));
 
@@ -53,8 +55,12 @@ class BacklogBoardController extends BaseController {
           $this->columnModel->changePosition($project_id, $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'), 0);
     }
     
-    public function removeBacklogColumn($projectId) {
-        //  Need to move all the tasks out first
+    public function removeBacklogColumn($projectId, $swimlane) {
+        foreach ($swimlane['columns'] as $column) {
+            if ($column['title'] === 'Backlog_Board') { 
+                foreach ($column['tasks'] as $task) { $this->taskPostitionModel->movePosition($projectId, $task['id'], $column['id'], 0, $swimlane_id = 0, $fire_events = true, $onlyOpen = true); }
+            }
+        }
           $this->columnModel->remove($this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'));
     }
 
