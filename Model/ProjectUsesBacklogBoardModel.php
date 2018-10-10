@@ -3,6 +3,7 @@
 namespace Kanboard\Plugin\Backlog\Model;
 
 use Kanboard\Model\ProjectFileModel;
+use Kanboard\Core\Base;
 
 class ProjectUsesBacklogBoardModel extends Base {
 
