@@ -9,7 +9,7 @@ class Plugin extends Base
     public function initialize()
     {
         $this->template->setTemplateOverride('board/table_container','backlog:board/table_container'); 
-        $this->template->hook->attach('template:board:column:dropdown', 'backlog:board/menu');
+        $this->template->hook->attach('template:project:dropdown', 'backlog:board/menu');
     }
     
     public function getClasses() {
