@@ -5,6 +5,7 @@ namespace Kanboard\Plugin\Backlog\Controller;
 use Kanboard\Controller\BaseController;
 use Kanboard\Model\ProjectModel;
 use Kanboard\Model\SwimlaneModel;
+use Kanboard\Model\ColumnModel;
 
 
 /**
@@ -38,32 +39,22 @@ class BacklogBoardController extends BaseController {
     }
     
     public function backlogSwimlane($projectId) {
-        if ($this->projectModel->exists($projectId)) {
-           
-          return $this->db->table(self::TABLE)->persist(array(
-            'project_id'  => $projectId,
-            'name'        => 'BacklogBoard_Swimlane',
-            'description' => 'Temporary Swimlane for Backlog Board',
-            'position'    => 0,
-            'is_active'   => 1,
-          ));
-            
-        }
+          $this->swimlaneModel->create($projectId, 'Backlog_Swimlane', 'Temporary Swimlane for Backlog Board');  
+          $this->swimlaneModel->changePosition($projectId, $this->swimlaneModel->getByName($projectId, 'Backlog_Swimlane'), 0);
     }
     
-    public function removeBacklogSwimlane($projecId, $swimlaneId) {
-        $this->db->startTransaction();
-        if ($this->db->table(TaskModel::TABLE)->eq('swimlane_id', $swimlaneId)->exists()) {
-            $this->db->cancelTransaction();
-            return false;
-        }
-        if (! $this->db->table(self::TABLE)->eq('id', $swimlaneId)->remove()) {
-            $this->db->cancelTransaction();
-            return false;
-        }
-        $this->swimlaneModel->updatePositions($projecId);
-        $this->db->closeTransaction();
-        return true;
+    public function removeBacklogSwimlane($projecId) {
+          $this->swimlaneModel->remove($projecId, $this->swimlaneModel->getByName($projectId, 'Backlog_Swimlane'));
+    }
+    
+    
+    public function backlogColumn($projectId) {
+          $this->columnModel->create($projectId, 'Backlog_Board', 0, 'Main Column for Backlog Board', 0);
+          $this->columnModel->changePosition($project_id, $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'), 0);
+    }
+    
+    public function removeBacklogColumn($projectId) {
+          $this->columnModel->remove($this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'));
     }
 
 }
