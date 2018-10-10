@@ -4,7 +4,7 @@ namespace Kanboard\Plugin\Backlog\Model;
 
 use Kanboard\Model\ProjectFileModel;
 
-class ProjectUsesBacklogBoardModel {
+class ProjectUsesBacklogBoardModel extends Base {
 
     public function setBacklogBoard($project_id) {
         $this->projectMetadataModel->save($project_id, array('uses_backlogboard' => 'set'));
