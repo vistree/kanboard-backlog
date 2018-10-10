@@ -17,4 +17,8 @@ class ProjectUsesBacklogBoardModel extends Base {
         $this->projectMetadataModel->remove($project_id, 'uses_backlogboard');
     }
     
+    public function isset($project_id) {
+        $this->projectMetadataModel->exists($project_id, 'uses_backlogboard');   
+    }
+    
 }
