@@ -54,6 +54,7 @@ class BacklogBoardController extends BaseController {
     }
     
     public function removeBacklogColumn($projectId) {
+        //  Need to move all the tasks out first
           $this->columnModel->remove($this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'));
     }
 
