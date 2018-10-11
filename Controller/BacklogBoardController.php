@@ -25,7 +25,7 @@ class BacklogBoardController extends BaseController {
 
         $this->flash->success(t('Backlog Board now activated.'));
 
-        $this->response->redirect($this->helper->url->to('BoardViewController', 'show', array('project_id' => $projectId), true);
+        $this->response->redirect($this->helper->url->to('BoardViewController', 'show', array('project_id' => $projectId), true));
     }
 
     public function unset() {
@@ -37,7 +37,7 @@ class BacklogBoardController extends BaseController {
 
         $this->flash->success(t('Backlog Board now deactivated.'));
 
-        $this->response->redirect($this->helper->url->to('BoardViewController', 'show', array('project_id' => $projectId), true);
+        $this->response->redirect($this->helper->url->to('BoardViewController', 'show', array('project_id' => $projectId), true));
     }
     
     public function backlogSwimlane($projectId) {
