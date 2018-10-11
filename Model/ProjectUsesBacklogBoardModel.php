@@ -21,4 +21,14 @@ class ProjectUsesBacklogBoardModel extends Base {
         return $this->projectMetadataModel->exists($project_id, 'uses_backlogboard');   
     }
     
+    public function getTasksInColumn($project_id, $column_id)
+    {
+        return $this->db
+                    ->table(TaskModel::TABLE)
+                    ->eq('project_id', $project_id)
+                    ->eq('column_id', $column_id)
+                    ->findAll();
+    }
+
+    
 }
