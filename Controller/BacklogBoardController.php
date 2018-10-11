@@ -17,27 +17,27 @@ use Kanboard\Model\ColumnModel;
 class BacklogBoardController extends BaseController {
 
     public function set() {
-        $project = $this->getProject();
+        $projectId = $this->request->getIntegerParam('project_id');
 
-        $this->projectUsesBacklogBoardModel->setBacklogBoard($project['id']);
-        $this->backlogSwimlane($project['id']);
-        $this->backlogColumn($project['id']);
+        $this->projectUsesBacklogBoardModel->setBacklogBoard($projectId);
+        $this->backlogSwimlane($projectId);
+        $this->backlogColumn($projectId);
 
         $this->flash->success(t('Backlog Board now activated.'));
 
-        $this->response->redirect($this->helper->url->to('BoardAjaxController', 'renderBoard', array('project_id' => $project['id'])), true);
+        $this->response->redirect($this->helper->url->to('BoardAjaxController', 'renderBoard', array('project_id' => $projectId)), true);
     }
 
     public function unset() {
-        $project = $this->getProject();
+        $projectId = $this->request->getIntegerParam('project_id');
 
-        $this->projectUsesBacklogBoardModel->unsetBacklogBoard($project['id']);
-        $this->removeBacklogSwimlane($project['id'], 0);
-        $this->removeBacklogColumn($project['id'], 1);
+        $this->projectUsesBacklogBoardModel->unsetBacklogBoard($projectId);
+        $this->removeBacklogSwimlane($projectId, 0);
+        $this->removeBacklogColumn($projectId, 1);
 
         $this->flash->success(t('Backlog Board now deactivated.'));
 
-        $this->response->redirect($this->helper->url->to('BoardAjaxController', 'renderBoard', array('project_id' => $project['id'])), true);
+        $this->response->redirect($this->helper->url->to('BoardAjaxController', 'renderBoard', array('project_id' => $projectId)), true);
     }
     
     public function backlogSwimlane($projectId) {
