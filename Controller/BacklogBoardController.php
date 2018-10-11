@@ -12,11 +12,14 @@ use Kanboard\Model\TaskPositionModel;
 /**
  * Backlog Board
  *
- * @package controller
+ * @package BacklogBoardController
  * @author  creecros
  */
 class BacklogBoardController extends BaseController {
 
+/**
+ * sets the board by creating swimlane and column
+ */
     public function set() {
         $projectId = $this->request->getIntegerParam('project_id');
 
@@ -29,6 +32,10 @@ class BacklogBoardController extends BaseController {
         $this->response->redirect($this->helper->url->to('BoardViewController', 'show', array('project_id' => $projectId), true));
     }
 
+/**
+ * unsets the board by moving tasks out of created column/swimlane to next column/swimlane, then removes created column/swimlane
+ */
+    
     public function unset() {
         $projectId = $this->request->getIntegerParam('project_id');
 
@@ -42,24 +49,43 @@ class BacklogBoardController extends BaseController {
         $this->response->redirect($this->helper->url->to('BoardViewController', 'show', array('project_id' => $projectId), true));
     }
     
+/**
+ * creates the swimlane 'Backlog_Swimlane'
+ */
+    
     public function backlogSwimlane($projectId) {
           $this->swimlaneModel->create($projectId, 'Backlog_Swimlane', 'Temporary Swimlane for Backlog Board');  
           $this->swimlaneModel->changePosition($projectId, $this->swimlaneModel->getIdByName($projectId, 'Backlog_Swimlane'), 1);
     }
     
+/**
+ * removes the swimlane 'Backlog_Swimlane'
+ */
+    
     public function removeBacklogSwimlane($projectId) {
           $this->swimlaneModel->remove($projectId, $this->swimlaneModel->getIdByName($projectId, 'Backlog_Swimlane'));
     }
     
+/**
+ * creates the column 'Backlog_Board'
+ */
     
     public function backlogColumn($projectId) {
           $this->columnModel->create($projectId, 'Backlog_Board', 0, 'Main Column for Backlog Board', 0);
           $this->columnModel->changePosition($projectId, $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'), 1);
     }
     
+/**
+ * removes the column 'Backlog_Board'
+ */
+    
     public function removeBacklogColumn($projectId) {
           $this->columnModel->remove($this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'));
     }
+    
+/**
+ * moves tasks out of column/swimlane
+ */
     
     public function moveTasksOut($projectId) {
           $columnId = $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board');
