@@ -52,7 +52,7 @@ class BacklogBoardController extends BaseController {
     
     public function backlogColumn($projectId) {
           $this->columnModel->create($projectId, 'Backlog_Board', 0, 'Main Column for Backlog Board', 0);
-          $this->columnModel->changePosition($project_id, $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'), 0);
+          $this->columnModel->changePosition($projecId, $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'), 0);
     }
     
     public function removeBacklogColumn($projectId, $swimlane) {
