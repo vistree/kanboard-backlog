@@ -63,8 +63,9 @@ class BacklogBoardController extends BaseController {
     
     public function moveTasksOut($projectId) {
           $columnId = $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board');
+          $swimlaneId = $this->swimlaneModel->getIdByName($projectId, 'Backlog_Swimlane');
           $tasksInColumn = $this->projectUsesBacklogBoardModel->getTasksInColumn($projectId, $columnId);
-          foreach ($tasksInColumn as $task) { $this->taskPositionModel->movePosition($projectId, $task['id'], $columnId, 1, $swimlane_id = 1, $fire_events = true, $onlyOpen = false); }
+          foreach ($tasksInColumn as $task) { $this->taskPositionModel->movePosition($projectId, $task['id'], $columnId, 1, $swimlaneId, true, false); }
     }
 
 }
