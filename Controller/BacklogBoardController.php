@@ -45,14 +45,14 @@ class BacklogBoardController extends BaseController {
           $this->swimlaneModel->changePosition($projectId, $this->swimlaneModel->getIdByName($projectId, 'Backlog_Swimlane'), 1);
     }
     
-    public function removeBacklogSwimlane($projecId) {
-          $this->swimlaneModel->remove($projecId, $this->swimlaneModel->getIdByName($projectId, 'Backlog_Swimlane'));
+    public function removeBacklogSwimlane($projectId) {
+          $this->swimlaneModel->remove($projectId, $this->swimlaneModel->getIdByName($projectId, 'Backlog_Swimlane'));
     }
     
     
     public function backlogColumn($projectId) {
           $this->columnModel->create($projectId, 'Backlog_Board', 0, 'Main Column for Backlog Board', 0);
-          $this->columnModel->changePosition($projecId, $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'), 1);
+          $this->columnModel->changePosition($projectId, $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'), 1);
     }
     
     public function removeBacklogColumn($projectId) {
