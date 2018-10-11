@@ -32,7 +32,7 @@ class Plugin extends Base
     
     public function getPluginAuthor()
     {
-        return 'vistree';
+        return 'vistree + creecros';
     }
     
     public function getPluginVersion()
