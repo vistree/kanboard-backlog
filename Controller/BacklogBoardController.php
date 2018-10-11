@@ -32,6 +32,7 @@ class BacklogBoardController extends BaseController {
         $projectId = $this->request->getIntegerParam('project_id');
 
         $this->projectUsesBacklogBoardModel->unsetBacklogBoard($projectId);
+        $this->moveTasksOut($projectId);
         $this->removeBacklogSwimlane($projectId);
         $this->removeBacklogColumn($projectId);
 
@@ -56,10 +57,13 @@ class BacklogBoardController extends BaseController {
     }
     
     public function removeBacklogColumn($projectId) {
+          $this->columnModel->remove($this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'));
+    }
+    
+    public function moveTasksOut($projectId) {
           $columnId = $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board');
           $tasksInColumn = $this->projectUsesBacklogBoardModel->getTasksInColumn($projectId, $columnId);
-          foreach ($tasksInColumn as $task) { $this->taskPositionModel->movePosition($projectId, $task['id'], $columnId, 1, $swimlane_id = 0, $fire_events = true, $onlyOpen = true); }
-          $this->columnModel->remove($this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'));
+          foreach ($tasksInColumn as $task) { $this->taskPositionModel->movePosition($projectId, $task['id'], $columnId, 1, $swimlane_id = 1, $fire_events = true, $onlyOpen = false); }
     }
 
 }
