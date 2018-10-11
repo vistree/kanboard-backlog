@@ -56,12 +56,9 @@ class BacklogBoardController extends BaseController {
     }
     
     public function removeBacklogColumn($projectId) {
-        $swimlane = $this->swimlaneModel->getByName($projectId, 'Backlog_Swimlane');
-        foreach ($swimlane['columns'] as $column) {
-            if ($column['title'] === 'Backlog_Board') { 
-                foreach ($column['tasks'] as $task) { $this->taskPostitionModel->movePosition($projectId, $task['id'], $column['id'], 0, $swimlane_id = 0, $fire_events = true, $onlyOpen = true); }
-            }
-        }
+          $columnId = $this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board');
+          $tasksInColumn = $this->projectUsesBacklogBoardModel->getTasksInColumn($projectId, $columnId);
+          foreach ($tasksInColumn as $task) { $this->taskPostitionModel->movePosition($projectId, $task['id'], $column['id'], 0, $swimlane_id = 0, $fire_events = true, $onlyOpen = true); }
           $this->columnModel->remove($this->columnModel->getColumnIdByTitle($projectId, 'Backlog_Board'));
     }
 
