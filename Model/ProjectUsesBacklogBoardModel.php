@@ -4,6 +4,7 @@ namespace Kanboard\Plugin\Backlog\Model;
 
 use Kanboard\Model\ProjectFileModel;
 use Kanboard\Model\ProjectMetadataModel;
+use Kanboard\Model\TaskModel;
 use Kanboard\Core\Base;
 
 class ProjectUsesBacklogBoardModel extends Base {
