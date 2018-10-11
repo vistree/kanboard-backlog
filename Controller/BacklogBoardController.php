@@ -6,6 +6,7 @@ use Kanboard\Controller\BaseController;
 use Kanboard\Model\ProjectModel;
 use Kanboard\Model\SwimlaneModel;
 use Kanboard\Model\ColumnModel;
+use Kanboard\Model\TaskPositionModel;
 
 
 /**
