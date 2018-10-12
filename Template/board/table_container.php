@@ -28,7 +28,7 @@
             $UseBacklog = FALSE;
             $backlogwidth = 100 / $backloglane['nb_columns'];
             ?>
-            <?php if (isset($backloglane['name']) && ($backloglane['name'] == 'backlog' || $backloglane['name'] == 'Backlog') && isset($backlogcolumn['title']) && ($backlogcolumn['title'] == 'backlog' || $backlogcolumn['title'] == 'Backlog')) {
+            <?php if ($this->task->projectUsesBacklogBoardModel->isset($project['id'])) {
                 $UseBacklog = TRUE;
             } ?>
 
