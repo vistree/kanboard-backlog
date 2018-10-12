@@ -8,7 +8,9 @@ class Plugin extends Base
 {
     public function initialize()
     {
-        $this->template->setTemplateOverride('board/table_container','backlog:board/table_container'); 
+        $this->template->setTemplateOverride('board/table_container','backlog:board/table_container');
+        $this->template->setTemplateOverride('column/index','backlog:column/index');
+        $this->template->setTemplateOverride('swimlane/table','backlog:swimlane/table');
         $this->template->hook->attach('template:project:dropdown', 'backlog:board/menu');
     }
     
