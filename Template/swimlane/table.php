@@ -11,7 +11,7 @@
     <tbody>
         <?php foreach ($swimlanes as $swimlane): ?>
         <tr data-swimlane-id="<?= $swimlane['id'] ?>">
-        <?php if (($swimlane['position'] == 1 Xor $this->task->projectUsesBacklogBoardModel->isset($project['id'])) || (!$this->task->projectUsesBacklogBoardModel->isset($project['id'])): ?>
+        <?php if (($swimlane['position'] == 1 Xor $this->task->projectUsesBacklogBoardModel->isset($project['id'])) || (!$this->task->projectUsesBacklogBoardModel->isset($project['id']))): ?>
             <td>
                 <?php if (! isset($disable_handle)): ?>
                     <i class="fa fa-arrows-alt draggable-row-handle" title="<?= t('Change column position') ?>"></i>&nbsp;
