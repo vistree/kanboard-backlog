@@ -20,7 +20,7 @@ class BacklogBoardController extends BaseController {
 /**
  * sets the board by creating swimlane and column
  */
-    public function set() {
+    public function backlogSet() {
         $projectId = $this->request->getIntegerParam('project_id');
 
         $this->projectUsesBacklogBoardModel->setBacklogBoard($projectId);
@@ -36,7 +36,7 @@ class BacklogBoardController extends BaseController {
  * unsets the board by moving tasks out of created column/swimlane to next column/swimlane, then removes created column/swimlane
  */
     
-    public function unset() {
+    public function backlogUnset() {
         $projectId = $this->request->getIntegerParam('project_id');
 
         $this->projectUsesBacklogBoardModel->unsetBacklogBoard($projectId);

@@ -25,7 +25,7 @@
         <tbody>
         <?php foreach ($columns as $column): ?>
         <tr data-column-id="<?= $column['id'] ?>">
-        <?php if (($column['position'] == 1 Xor $this->task->projectUsesBacklogBoardModel->isset($project['id'])) || (!$this->task->projectUsesBacklogBoardModel->isset($project['id']))): ?>
+        <?php if (($column['position'] == 1 Xor $this->task->projectUsesBacklogBoardModel->backlogIsset($project['id'])) || (!$this->task->projectUsesBacklogBoardModel->backlogIsset($project['id']))): ?>
             <td>
                 <i class="fa fa-arrows-alt draggable-row-handle" title="<?= t('Change column position') ?>"></i>&nbsp;
                 <div class="dropdown">

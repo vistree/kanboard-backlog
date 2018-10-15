@@ -37,7 +37,7 @@ class ProjectUsesBacklogBoardModel extends Base {
  * returns true if the property 'uses_backlogboard' in project metadata is set
  */
     
-    public function isset($project_id) {
+    public function backlogIsset($project_id) {
         return $this->projectMetadataModel->exists($project_id, 'uses_backlogboard');   
     }
     
