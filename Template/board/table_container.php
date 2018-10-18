@@ -35,8 +35,8 @@
             <?php if ($UseBacklog === TRUE): ?>
             <tbody>
             <tr>
-                <td width="<?php print $backlogwidth; ?>%">
-                    <table>
+                <td id="kanboard-column" width="<?php print $backlogwidth; ?>%" style="width:<?php print $backlogwidth; ?>%;" data-nb_columns="<?php print $backloglane['nb_columns']; ?>">
+                    <table id="backlog-board">
 
                         <?= $this->render('board/table_column', array(
                             'swimlane' => $backloglane,
@@ -52,7 +52,7 @@
                     </table>
                 </td>
                 <td>
-                    <table>
+                    <table id="main-board">
 
                         <?php array_shift($swimlanes); ?>
                         <?php endif ?>

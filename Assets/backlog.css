@@ -1,0 +1,10 @@
+#main-board, #backlog-board {
+    table-layout: fixed;
+    margin-bottom: 0;
+}
+
+@media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .board-container-compact #main-board, .board-container-compact #backlog-board {
+        table-layout: auto;
+    }
+}
