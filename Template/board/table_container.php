@@ -1,13 +1,28 @@
+<?php // ADDED BY FL
+
+$backloglane = $swimlanes[0];
+$backlogcolumn = $backloglane['columns'][0];
+$backloglane['columns'] = array();
+$backloglane['columns'][] = $backlogcolumn;
+$UseBacklog = FALSE;
+$backlogwidth = 100 / $backloglane['nb_columns'];
+$board_class = '';
+?>
+<?php if ($this->task->projectUsesBacklogBoardModel->backlogIsset($project['id'])) {
+    $UseBacklog = TRUE;
+    $board_class = ' backlog-enabled';
+} ?>
+
 <div id="board-container">
     <?php if (empty($swimlanes) || empty($swimlanes[0]['nb_columns'])): ?>
         <p class="alert alert-error"><?= t('There is no column or swimlane activated in your project!') ?></p>
     <?php else: ?>
 
     <?php if (isset($not_editable)): ?>
-    <table id="board" class="board-project-<?= $project['id'] ?>">
+    <table id="board" class="board-project-<?= $project['id'] ?><?= $board_class ?>">
         <?php else: ?>
         <table id="board"
-               class="board-project-<?= $project['id'] ?>"
+               class="board-project-<?= $project['id'] ?><?= $board_class ?>"
                data-project-id="<?= $project['id'] ?>"
                data-check-interval="<?= $board_private_refresh_interval ?>"
                data-save-url="<?= $this->url->href('BoardAjaxController', 'save', array('project_id' => $project['id'])) ?>"
@@ -17,25 +32,10 @@
         >
             <?php endif ?>
 
-
-
-            <?php // ADDED BY FL
-
-            $backloglane = $swimlanes[0];
-            $backlogcolumn = $backloglane['columns'][0];
-            $backloglane['columns'] = array();
-            $backloglane['columns'][] = $backlogcolumn;
-            $UseBacklog = FALSE;
-            $backlogwidth = 100 / $backloglane['nb_columns'];
-            ?>
-            <?php if ($this->task->projectUsesBacklogBoardModel->backlogIsset($project['id'])) {
-                $UseBacklog = TRUE;
-            } ?>
-
             <?php if ($UseBacklog === TRUE): ?>
             <tbody>
             <tr>
-                <td id="kanboard-column" width="<?php print $backlogwidth; ?>%" style="width:<?php print $backlogwidth; ?>%;" data-nb_columns="<?php print $backloglane['nb_columns']; ?>">
+                <td id="kanboard-column" style="min-width:240px; width:<?php print $backlogwidth; ?>%;" data-nb_columns="<?php print $backloglane['nb_columns']; ?>">
                     <table id="backlog-board">
 
                         <?= $this->render('board/table_column', array(

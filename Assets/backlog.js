@@ -1,7 +1,6 @@
 $(document).ready(function() {
    if ($('#kanboard-column th').hasClass( "board-column-header-collapsed" )) {
        $("#kanboard-column").css("width", "28px");
-       $("#kanboard-column").prop("width", "28px");
    }
 });
 
@@ -16,10 +15,8 @@ Kanboard.BoardColumnView.prototype.listen = function (event) {
         if (column.target.dataset.columnId == backlog_column) {
             if (this.tagName == 'DIV') {
                 $("#kanboard-column").css("width", backlog_column_width + "%");
-                $("#kanboard-column").prop("width", backlog_column_width + "%");
             } else {
                 $("#kanboard-column").css("width", "28px");
-                $("#kanboard-column").prop("width", "28px");
             }
         }
     })
