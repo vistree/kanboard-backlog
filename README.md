@@ -1,14 +1,27 @@
-# kanboard-backlog
-Plugin to add a backlog column with full height to project board
+# Kanboard - Backlog Board - Plugin
+------------------
 
-To test you have to download the repo into the kanboard plugins folder. Make sure the name of the foler is "Backlog". Make sure you don't use the bigboard (https://github.com/stinnux/kanboard-bigboard) at the moment!
+**Plugin to add a backlog column with full height to project board**
 
-Then create a board and name the first (!) swimlane "backlog" and the first (!) column also "backlog".
+*One **Column** to rule them all* :ring:	
 
-If you change an existing board, make sure that there are only tasks in the first column in the first swimlane and that there are no tasks in the first column in all other swimlanes.
+Install:
+-------
+* To install, download the repo into the kanboard plugins folder.
+* Make sure the name of the foler is "Backlog".
 
-Most of it works. The only problem is that this way collapsing the columns does not work completely for the main area (columns that are NOT the backlog) and not at all for my new column backlog. The reason is that to make everything work I had to create 2 <td>-columns in the main table, each with its own sub-table.
+How it works:
+------------
+1. Install plugin
+2. Enable Backlog Board(see screenshot for toggle switch)
+3. Upon disable, all tasks will be moved out to the first column & swimlane
 
-![board-with-backlog-column](https://user-images.githubusercontent.com/7022827/45942482-ddd46b00-bfe2-11e8-8655-4cbfde066a1a.png)
+Screenshots:
+-----------
+1. Board
 
-In a further step we need to make sure the column folding works even for the backlog column.
+![image](https://user-images.githubusercontent.com/26339368/47275413-47fa1480-d57d-11e8-99c5-9e76675102a7.png)
+
+2. Enable/Disable
+
+![image](https://user-images.githubusercontent.com/26339368/47275437-8a235600-d57d-11e8-8450-bf75bef86277.png)
