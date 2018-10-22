@@ -1,6 +1,7 @@
 <?php // ADDED BY FL
 
 $backloglane = $swimlanes[0];
+$backloglane['columns'][0]['title'] = 'Backlog';
 $backlogcolumn = $backloglane['columns'][0];
 $backloglane['columns'] = array();
 $backloglane['columns'][] = $backlogcolumn;
