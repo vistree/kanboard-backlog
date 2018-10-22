@@ -8,7 +8,7 @@
 Install:
 -------
 * To install, download the repo into the kanboard plugins folder.
-* Make sure the name of the foler is "Backlog".
+* Make sure the name of the folder is "Backlog".
 
 How it works:
 ------------
