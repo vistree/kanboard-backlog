@@ -56,6 +56,6 @@ class Plugin extends Base
     
     public function getCompatibleVersion()
     {
-        return '>=1.2.4';
+        return '>=1.0.45';
     }
 }
