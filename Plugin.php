@@ -8,7 +8,12 @@ class Plugin extends Base
 {
     public function initialize()
     {
-        $this->template->setTemplateOverride('board/table_container','backlog:board/table_container');
+        if (file_exists('plugins/Bigboard')) {
+            $this->template->setTemplateOverride('bigboard:board/table_container','backlog:board/bb_table_container');
+            $this->template->setTemplateOverride('board/table_container','backlog:board/bb_table_container');
+        } else {
+            $this->template->setTemplateOverride('board/table_container','backlog:board/table_container');
+        }
         $this->template->setTemplateOverride('column/index','backlog:column/index');
         $this->template->setTemplateOverride('swimlane/table','backlog:swimlane/table');
         $this->hook->on('template:layout:js', array('template' => 'plugins/Backlog/Assets/backlog.js'));
@@ -46,7 +51,7 @@ class Plugin extends Base
     
     public function getPluginVersion()
     {
-        return '0.0.2';
+        return '1.0.3';
     }
     
     public function getPluginHomepage()
