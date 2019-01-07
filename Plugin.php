@@ -9,6 +9,7 @@ class Plugin extends Base
     public function initialize()
     {
         if (file_exists('plugins/Bigboard')) {
+            $this->template->setTemplateOverride('bigboard:board/view','backlog:board/view');
             $this->template->setTemplateOverride('bigboard:board/table_container','backlog:board/bb_table_container');
             $this->template->setTemplateOverride('board/table_container','backlog:board/bb_table_container');
         } else {
