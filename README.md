@@ -9,7 +9,7 @@ Install:
 -------
 * To install, download the repo into the kanboard plugins folder.
 * Make sure the name of the folder is "Backlog".
-* This plugin is not compatible with Bigboard
+* This plugin is not compatible with [Bigboard](https://github.com/stinnux/kanboard-bigboard)
 
 How it works:
 ------------
