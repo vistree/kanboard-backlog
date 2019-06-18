@@ -1,9 +1,17 @@
 <?php
+
 namespace Kanboard\Plugin\Backlog;
+
 use DateTime;
 use Kanboard\Core\Plugin\Base;
+use Kanboard\Model\ProjectModel;
+use Kanboard\Plugin\Backlog\Model\ProjectUsesBacklogBoardModel;
+use Kanboard\Model\ColumnModel;
+use Kanboard\Model\SwimlaneModel;
+use Kanboard\Model\TaskPositionModel;
 use Kanboard\Core\Translator;
 use Kanboard\Core\Security\Role;
+
 class Plugin extends Base
 {
     public function initialize()
@@ -14,6 +22,20 @@ class Plugin extends Base
         $this->hook->on('template:layout:js', array('template' => 'plugins/Backlog/Assets/backlog.js'));
         $this->hook->on('template:layout:css', array('template' => 'plugins/Backlog/Assets/backlog.css'));
         $this->template->hook->attach('template:project:dropdown', 'backlog:board/menu');
+        
+        $projects = $this->projectModel->getAllByStatus(1); //get all projects that are active
+        foreach ($projects as $project) {
+            if ($this->projectUsesBacklogBoardModel->backlogIsset($project['id'])) {
+               $columnId = $this->columnModel->getColumnIdByTitle($project['id'], 'Backlog_Board');
+               $tasksInColumn = $this->projectUsesBacklogBoardModel->getTasksInColumn($project['id'], $columnId);
+               foreach($tasksInColumn as $task) {
+                     $swimlane = $this->swimlaneModel->getById($task['swimlane_id']);
+                     if ($swimlane['position'] !== 1) {
+                         $this->taskPositionModel->movePosition($project['id'], $task['id'], $columnId , 1, $this->swimlaneModel->getByName($project['id'], "Backlog_swimlane")['id'], true, false); 
+                     }
+                }
+            }
+        }
     }
 
     public function onStartup()
@@ -46,7 +68,7 @@ class Plugin extends Base
     
     public function getPluginVersion()
     {
-        return '1.0.3';
+        return '1.0.4';
     }
     
     public function getPluginHomepage()
