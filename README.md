@@ -17,6 +17,10 @@ How it works:
 2. Enable Backlog Board(see screenshot for toggle switch)
 3. Upon disable, all tasks will be moved out to the first column & swimlane
 
+Known issue:
+------------
+Task recurrence has issues, specifically triggering the recurrence from the first column drag out.
+
 Screenshots:
 -----------
 1. Board
