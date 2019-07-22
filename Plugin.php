@@ -16,12 +16,16 @@ class Plugin extends Base
 {
     public function initialize()
     {
+        
         $this->template->setTemplateOverride('board/table_container','backlog:board/table_container');
         $this->template->setTemplateOverride('column/index','backlog:column/index');
         $this->template->setTemplateOverride('swimlane/table','backlog:swimlane/table');
         $this->hook->on('template:layout:js', array('template' => 'plugins/Backlog/Assets/backlog.js'));
         $this->hook->on('template:layout:css', array('template' => 'plugins/Backlog/Assets/backlog.css'));
         $this->template->hook->attach('template:project:dropdown', 'backlog:board/menu');
+        
+        //CONFIG HOOK
+        $this->template->hook->attach('template:config:board', 'backlog:config/board_name');    
         
         $projects = $this->projectModel->getAllByStatus(1); //get all projects that are active
         foreach ($projects as $project) {
@@ -68,7 +72,7 @@ class Plugin extends Base
     
     public function getPluginVersion()
     {
-        return '1.0.4';
+        return '1.0.5';
     }
     
     public function getPluginHomepage()

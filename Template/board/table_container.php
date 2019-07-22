@@ -1,7 +1,8 @@
 <?php // ADDED BY FL
 
 $backloglane = $swimlanes[0];
-$backloglane['columns'][0]['title'] = 'Backlog';
+// $backloglane['columns'][0]['title'] = 'Backlog';
+$backloglane['columns'][0]['title'] = $this->task->configModel->get('backlog_board_title', 'Backlog');
 $backlogcolumn = $backloglane['columns'][0];
 $backloglane['columns'] = array();
 $backloglane['columns'][] = $backlogcolumn;
